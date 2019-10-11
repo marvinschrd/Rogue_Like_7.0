@@ -5,9 +5,11 @@
 #include <windows.h>
 #include "potion.h"
 #include "trap.h"
+#include <time.h>
 
 Ressource ressource;
 HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+
 
 Map::Map(int playerPositionX, int playerPositionY)
 {
@@ -40,6 +42,19 @@ Map::Map(int playerPositionX, int playerPositionY)
 	map[8][14] = Trap::trap;
 	map[8][17] = ressource.rocks;
 	map[12][15] = ressource.ennemy;
+
+	for(int i = 0; i < 10; i++)
+	{
+		map[rand() % 16+3][rand() % 67+3] = Trap::trap;
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		map[rand() % 16 + 3][rand() % 67 + 3] = Potion::potion ;
+	}
+	for (int i = 0; i < 15; i++)
+	{
+		map[rand() % 16 + 3][rand() % 67 + 3] = ressource.rocks;
+	}
 }
 
 void Map::Print()
@@ -103,7 +118,7 @@ void Map::MoveSecurity(int playerNewPositionx, int playerNewPositionY)
 	{
 		isPotion = true;
 	}
-	if (map[playerNewPositionx][playerNewPositionY] == '¢')
+	if (map[playerNewPositionx][playerNewPositionY] == 'X')
 	{
 		isTrap = true;
 	}

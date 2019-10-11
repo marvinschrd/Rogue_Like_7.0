@@ -7,7 +7,7 @@ public:
 	~Trap() {};
 
 	static const char trap = 'X';
-	int attackTrap = 30;
+	const int attackTrap = 30;
 
 private:
 };

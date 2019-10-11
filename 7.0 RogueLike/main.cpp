@@ -6,6 +6,7 @@
 #include "trap.h"
 #include "GlobalRessources.h"
 #include <Windows.h>
+#include <time.h>
 
 
 /* EXERCICE 7.0 ROGUE LIKE
@@ -32,7 +33,7 @@ int main() {
 	Potion potion = Potion(20, '$');
 	Trap trap = Trap(30, '*');
 	Map map = Map(player.xPlayerPosition, player.yPlayerPosition);
-
+	srand(time(NULL));
 	
 	//map.Add(Ressource::player, player.xPlayerPosition, player.yPlayerPosition);
 	bool isRunning = true;
@@ -51,7 +52,7 @@ int main() {
 		player.CheckMove(player.UserInputs);
 		map.MoveSecurity(player.xNewPlayerPosition, player.yNewPlayerPosition);
 		map.UpdateMap(player.GetPlayerXposition(), player.GetPlayerYposition());
-		player.MovePosition(player.xNewPlayerPosition, player.yNewPlayerPosition, map.isObstacle, map.isEnnemy, map.isPotion, map.isTrap, potion.potionVie, ennemy.attack_);
+		player.MovePosition(player.xNewPlayerPosition, player.yNewPlayerPosition, map.isObstacle, map.isEnnemy, map.isPotion, map.isTrap, potion.potionVie, ennemy.attack_, trap.attackTrap, player.UserChoice);
 		map.Add(Ressource::player, player.xPlayerPosition, player.yPlayerPosition);
 		
 	}

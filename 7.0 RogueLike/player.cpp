@@ -10,9 +10,28 @@ void Player::TakeDamage(const int attack)
 	health_ -= attack;
 }
 
-void Player::PickUpObject()
+void Player::PickUpObject(char userChoice ,int potionHealth)
 {
-	
+	std::cout << "Do you want to pick up the Potion ? Type Y or N\n";
+	std::cin >> userChoice;
+
+	switch (userChoice)
+	{
+	case('y'):
+	{
+		takeHealth(potionHealth);
+		break;
+	}
+	case('n'):
+	{
+		std::cout << "You don't pick up the potion\n";
+		system("pause");
+		break;
+	}
+	default:
+	std::cout << "You don't pick up the potion\n";
+	break;
+	}
 }
 
 //void Player::Position()
@@ -22,7 +41,7 @@ void Player::PickUpObject()
 
 
 
-void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool isObstacle, bool isEnnemy, bool isPotion, bool isTrap, int potionHealth, int ennemyAttack)
+void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool isObstacle, bool isEnnemy, bool isPotion, bool isTrap, int potionHealth, int ennemyAttack, int trapDamage, char userChoice)
 {
 	if(isObstacle== true)
 	{
@@ -40,10 +59,10 @@ void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool i
 	}
 	if(isPotion == true)
 	{
+		PickUpObject(userChoice, potionHealth);
 		xPlayerPosition = newplayerPositionX;
 		yPlayerPosition = newplayerPositionY;
 		//ajouter option de recuperer
-		takeHealth(potionHealth);
 		return;
 	}
 	if(isTrap == true)
@@ -51,6 +70,7 @@ void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool i
 		xPlayerPosition = newplayerPositionX;
 		yPlayerPosition = newplayerPositionY;
 		//ajouter prise de degats
+		TakeDamage(trapDamage);
 		return;
 	}
 	else
