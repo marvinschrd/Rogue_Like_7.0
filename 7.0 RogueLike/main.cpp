@@ -43,6 +43,7 @@ int main() {
 		map.isEnnemy = false;
 		map.isPotion = false;
 		map.isTrap = false;
+		potion.potionTaken = true;
 		
 		system("cls");
 		map.CheckWinOrDeath(player.health_, isRunning);
@@ -55,6 +56,7 @@ int main() {
 		player.MovePosition(player.xNewPlayerPosition, player.yNewPlayerPosition, map.isObstacle, map.isEnnemy, map.isPotion, map.isTrap, potion.potionVie, ennemy.attack_, trap.attackTrap, player.UserChoice);
 		map.Add(Ressource::player, player.xPlayerPosition, player.yPlayerPosition);
 		
+
 	}
 	
 

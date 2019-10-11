@@ -20,6 +20,7 @@ public:
 	void ShowMenu(int playerHealth);
 	void MoveSecurity(int playerNewPositionx, int playerNewPositionY);
 	void CheckWinOrDeath(int playerHealth, bool& isRunning);
+	
 private:
 };
 

@@ -6,6 +6,7 @@ public:
 	~Potion() {};
 	static const char potion = '¢';
 	int potionVie = 20;
+	bool potionTaken;
 
 private:
 

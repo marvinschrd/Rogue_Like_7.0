@@ -2,7 +2,7 @@
 
 struct Ressource
 {
-	char ground = '.';
+	char ground = ' ';
 	static const char walls = '°';
 	static const char rocks = '^';
 	static const char player = '@';

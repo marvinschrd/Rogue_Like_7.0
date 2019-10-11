@@ -4,7 +4,6 @@
 #include <iostream>
 
 
-
 void Player::TakeDamage(const int attack)
 {
 	health_ -= attack;
@@ -12,7 +11,7 @@ void Player::TakeDamage(const int attack)
 
 void Player::PickUpObject(char userChoice ,int potionHealth)
 {
-	std::cout << "Do you want to pick up the Potion ? Type Y or N\n";
+	std::cout << "Do you want to eat the magical healing apple ? If you don't, it will be wasted .  Type Y or N\n";
 	std::cin >> userChoice;
 
 	switch (userChoice)
@@ -20,26 +19,21 @@ void Player::PickUpObject(char userChoice ,int potionHealth)
 	case('y'):
 	{
 		takeHealth(potionHealth);
+		std::cout << "\nThe apple power gave you 20 health point\n";
+		system("pause");
 		break;
 	}
 	case('n'):
 	{
-		std::cout << "You don't pick up the potion\n";
+		std::cout << "\nYou didn't eat the magical healing apple\nIt transformed into dust\n\n";
 		system("pause");
 		break;
 	}
 	default:
-	std::cout << "You don't pick up the potion\n";
+	std::cout << "\nYou don't pick up the potion\n\n";
 	break;
 	}
 }
-
-//void Player::Position()
-//{
-//	
-//}
-
-
 
 void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool isObstacle, bool isEnnemy, bool isPotion, bool isTrap, int potionHealth, int ennemyAttack, int trapDamage, char userChoice)
 {
@@ -53,8 +47,9 @@ void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool i
 	{
 		xPlayerPosition = newplayerPositionX;
 		yPlayerPosition = newplayerPositionY;
-		//ajouter prise de degats
 		TakeDamage(ennemyAttack);
+		std::cout << "\nThe enemy got you, he hit you with his full strength, you die..\n\n";
+		system("pause");
 		return;
 	}
 	if(isPotion == true)
@@ -62,15 +57,15 @@ void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool i
 		PickUpObject(userChoice, potionHealth);
 		xPlayerPosition = newplayerPositionX;
 		yPlayerPosition = newplayerPositionY;
-		//ajouter option de recuperer
 		return;
 	}
 	if(isTrap == true)
 	{
 		xPlayerPosition = newplayerPositionX;
 		yPlayerPosition = newplayerPositionY;
-		//ajouter prise de degats
 		TakeDamage(trapDamage);
+		std::cout << "\nYou fell into a trap, hurting yourself and loosing 30 health points\n\n";
+		system("pause");
 		return;
 	}
 	else

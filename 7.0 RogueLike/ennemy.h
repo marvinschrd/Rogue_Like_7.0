@@ -8,7 +8,7 @@ public:
 
 	//void Attack(Player &Player) const;
 
-	int attack_ = 100;
+	int attack_ = 200;
 private:
 	//int attack_;
 	char sprite_;

@@ -45,15 +45,15 @@ Map::Map(int playerPositionX, int playerPositionY)
 
 	for(int i = 0; i < 10; i++)
 	{
-		map[rand() % 16+3][rand() % 67+3] = Trap::trap;
+		map[rand() % 16+3][rand() % 66+3] = Trap::trap;
 	}
 	for (int i = 0; i < 5; i++)
 	{
-		map[rand() % 16 + 3][rand() % 67 + 3] = Potion::potion ;
+		map[rand() % 16 + 3][rand() % 66 + 3] = Potion::potion ;
 	}
 	for (int i = 0; i < 15; i++)
 	{
-		map[rand() % 16 + 3][rand() % 67 + 3] = ressource.rocks;
+		map[rand() % 16 + 3][rand() % 66 + 3] = ressource.rocks;
 	}
 }
 
@@ -88,7 +88,17 @@ void Map::Add(char objectImage, int objectPositionX, int objectPositionY)
 
 void Map::UpdateMap(int getPositionX, int getPositionY)
 {
-	map[getPositionX][getPositionY] = '.';
+	
+	
+	if(isTrap == true)
+	{
+		map[getPositionX][getPositionY] = 'X';
+	}
+	else
+	{
+		map[getPositionX][getPositionY] = ressource.ground;
+	}
+	
 }
 
 void Map::ShowMenu(int playerHealth)
@@ -96,7 +106,7 @@ void Map::ShowMenu(int playerHealth)
 	SetConsoleTextAttribute(color, 11);
 	std::cout << " #####################################################################\n";
 	std::cout << " |                                                                   |\n";
-	std::cout << " |      Player health = " << playerHealth << "                       |\n";
+	std::cout << " |      Player health = " << playerHealth << "                                          |\n";
 	std::cout << " |         To move up press : W      To move down press : S          |\n";
 	std::cout << " |         To move right press : D   To move left press : A          |\n";
 	std::cout << " |                                                                   |\n";
@@ -106,19 +116,19 @@ void Map::ShowMenu(int playerHealth)
 
 void Map::MoveSecurity(int playerNewPositionx, int playerNewPositionY)
 {
-	if(map[playerNewPositionx][playerNewPositionY]=='°' || map[playerNewPositionx][playerNewPositionY] == '^')
+	if(map[playerNewPositionx][playerNewPositionY]==ressource.walls || map[playerNewPositionx][playerNewPositionY] == ressource.rocks)
 	{
 		isObstacle = true;
 	}
-	if(map[playerNewPositionx][playerNewPositionY]=='&')
+	if(map[playerNewPositionx][playerNewPositionY]==ressource.ennemy)
 	{
 		isEnnemy = true;
 	}
-	if (map[playerNewPositionx][playerNewPositionY] == '¢')
+	if (map[playerNewPositionx][playerNewPositionY] == Potion::potion)
 	{
 		isPotion = true;
 	}
-	if (map[playerNewPositionx][playerNewPositionY] == 'X')
+	if (map[playerNewPositionx][playerNewPositionY] == Trap::trap)
 	{
 		isTrap = true;
 	}
@@ -133,5 +143,7 @@ void Map::CheckWinOrDeath(int playerHealth, bool& isRunning)
 		isRunning = false;
 	}
 }
+
+
 
 
