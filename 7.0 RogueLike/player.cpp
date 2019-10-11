@@ -19,7 +19,7 @@ void Player::PickUpObject(char userChoice ,int potionHealth)
 	case('y'):
 	{
 		takeHealth(potionHealth);
-		std::cout << "\nThe apple power gave you 20 health point\n";
+		std::cout << "\nThe apple power gave you 20 health point\n\n";
 		system("pause");
 		break;
 	}

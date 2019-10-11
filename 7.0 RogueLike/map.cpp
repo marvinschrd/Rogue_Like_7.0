@@ -72,13 +72,7 @@ void Map::Print()
 	}
 }
 
-//void Map::CheckObject(int playerPositionX, int playerPositionY)
-//{
-//	if (map[playerPositionX +1][playerPositionY] == ressource.walls || map[playerPositionX+1][playerPositionY] == ressource.rocks)
-//	{
-//		isObstacle = true;
-//	}
-//}
+
 
 void Map::Add(char objectImage, int objectPositionX, int objectPositionY)
 {
@@ -88,17 +82,7 @@ void Map::Add(char objectImage, int objectPositionX, int objectPositionY)
 
 void Map::UpdateMap(int getPositionX, int getPositionY)
 {
-	
-	
-	if(isTrap == true)
-	{
-		map[getPositionX][getPositionY] = 'X';
-	}
-	else
-	{
 		map[getPositionX][getPositionY] = ressource.ground;
-	}
-	
 }
 
 void Map::ShowMenu(int playerHealth)
