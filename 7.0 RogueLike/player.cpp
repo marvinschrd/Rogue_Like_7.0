@@ -2,6 +2,7 @@
 #include "map.h"
 #include "GlobalRessources.h"
 #include <iostream>
+#include "trap.h"
 
 
 void Player::TakeDamage(const int attack)

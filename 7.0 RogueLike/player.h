@@ -10,6 +10,10 @@ public:
 	void PickUpObject(char userChoice,int potionHealth);
 	/*void Position();*/
 	void MovePosition(int playerPositionX, int playerPositionY, bool isObstacle, bool isEnnemy, bool isPotion, bool isTrap, int potionHealth, int ennemyAttack, int trapDamage, char userChoice);
+
+	
+	
+
 	void CheckMove(char userInput);
 	void AskUserInput();
 	int GetPlayerXposition();

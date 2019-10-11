@@ -40,7 +40,7 @@ Map::Map(int playerPositionX, int playerPositionY)
 	map[playerPositionX][playerPositionY] = ressource.player;
 	map[16][12] = Potion::potion;
 	map[8][14] = Trap::trap;
-	map[8][17] = ressource.rocks;
+	//map[8][17] = ressource.rocks;
 	map[12][15] = ressource.ennemy;
 
 	for(int i = 0; i < 10; i++)
@@ -51,9 +51,41 @@ Map::Map(int playerPositionX, int playerPositionY)
 	{
 		map[rand() % 16 + 3][rand() % 66 + 3] = Potion::potion ;
 	}
-	for (int i = 0; i < 15; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		map[rand() % 16 + 3][rand() % 66 + 3] = ressource.rocks;
+		map[rand() % 16 + 3][rand() % 67 + 3] = ressource.rocks;
+		map[i+1][32] = ressource.walls;
+		map[i+1][33] = ressource.walls;
+		map[10][i+1] = ressource.walls;
+		map[10][i + 6] = ressource.walls;
+		map[11][i + 1] = ressource.walls;
+		map[11][i + 6] = ressource.walls;
+		map[16][i + 34] = ressource.walls;
+		map[16][i + 39] = ressource.walls;
+		map[16][i + 44] = ressource.walls;
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		map[i + 1][1] = ressource.walls;
+		map[i + 1][2] = ressource.walls;
+		map[i + 16][33] = ressource.walls;
+		map[i + 9][45] = ressource.walls;
+		map[i + 6][45] = ressource.walls;
+		map[11][i+46] = ressource.walls;
+		map[11][i + 49] = ressource.walls;
+		map[11][i + 52] = ressource.walls;
+		map[11][i + 55] = ressource.walls;
+		map[i + 9][58] = ressource.walls;
+		map[i + 6][58] = ressource.walls;
+		map[i + 3][58] = ressource.walls;
+		map[3][i + 55] = ressource.walls;
+		map[3][i + 52] = ressource.walls;
+		map[3][i + 49] = ressource.walls;
+		map[i + 3][48] = ressource.walls;
+		map[i + 6][48] = ressource.walls;
+		map[8][i + 49] = ressource.walls;
+		map[8][i + 52] = ressource.walls;
+		map[i + 6][55] = ressource.walls;
 	}
 }
 
@@ -82,15 +114,15 @@ void Map::Add(char objectImage, int objectPositionX, int objectPositionY)
 
 void Map::UpdateMap(int getPositionX, int getPositionY)
 {
-		map[getPositionX][getPositionY] = ressource.ground;
-}
+	map[getPositionX][getPositionY] = ressource.ground;
+}	
 
 void Map::ShowMenu(int playerHealth)
 {
 	SetConsoleTextAttribute(color, 11);
 	std::cout << " #####################################################################\n";
 	std::cout << " |                                                                   |\n";
-	std::cout << " |      Player health = " << playerHealth << "                                          |\n";
+	std::cout << " |      Player health = " << playerHealth << "				             |\n";
 	std::cout << " |         To move up press : W      To move down press : S          |\n";
 	std::cout << " |         To move right press : D   To move left press : A          |\n";
 	std::cout << " |                                                                   |\n";
