@@ -48,13 +48,13 @@ Map::Map(int playerPositionX, int playerPositionY)
 	map[5][50] = Trap::trap;
 	
 	map[12][15] = ressource.ennemy;
+	map[8][47] = Trap::trap;
 	map[8][47] = ressource.ennemy;
-	map[8][47] = ressource.ennemy;
-	map[10][46] = ressource.ennemy;
-	map[9][49] = ressource.ennemy;
+	map[10][46] = Trap::trap;
+	map[9][49] = Trap::trap;
 	map[9][56] = ressource.ennemy;
-	map[6][57] = ressource.ennemy;
-	map[6][52] = ressource.ennemy;
+	map[6][57] = Trap::trap;
+	map[6][52] = Trap::trap;
 	
 	map[6][46]= ressource.walls;
 	map[6][47] = ressource.walls;

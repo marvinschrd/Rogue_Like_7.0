@@ -48,6 +48,7 @@ int main() {
 		system("cls");
 		map.Print();
 		map.ShowMenu(player.health_);
+		map.GiveKey(potion.potionsLeft, Ressource::mystery,map.keyXPosition, map.keyYPosition);
 		player.AskUserInput();
 		player.CheckMove(player.UserInputs);
 		map.MoveSecurity(player.xNewPlayerPosition, player.yNewPlayerPosition);
@@ -59,7 +60,6 @@ int main() {
 		
 		map.Add(Ressource::player, player.xPlayerPosition, player.yPlayerPosition);
 		map.CheckWinOrDeath(player.health_, isRunning, map.isWinningObject);
-		map.GiveKey(potion.potionsLeft, Ressource::mystery,map.keyXPosition, map.keyYPosition);
 		
 	}
 	system("cls");

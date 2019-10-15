@@ -10,7 +10,7 @@ void Player::TakeDamage(const int attack)
 
 void Player::PickUpObject(char userChoice ,int potionHealth, int& potionsLeft)
 {
-	std::cout << "Do you want to eat the magical healing apple ? If you don't, it will be wasted .  Type Y or N\n";
+	std::cout << "Do you want to eat the magical healing apple ? If you don't, it will be wasted .\nType Y to take it. Any other entry will destroy the apple, but why would you do that ?? \n";
 	std::cin >> userChoice;
 
 	switch (userChoice)
@@ -23,14 +23,9 @@ void Player::PickUpObject(char userChoice ,int potionHealth, int& potionsLeft)
 		system("pause");
 		break;
 	}
-	case('n'):
-	{
-		std::cout << "\nYou didn't eat the magical healing apple\nIt transformed into dust\n\n";
-		system("pause");
-		break;
-	}
 	default:
-	std::cout << "\nYou don't pick up the potion\n\n";
+	std::cout << "\nYou didn't eat the magical healing apple and it transformed into dust\nSeriously..?\n\n";;
+	system("pause");
 	break;
 	}
 }
@@ -111,6 +106,7 @@ void Player::CheckMove(char userInput)
 	case('d'):
 		yNewPlayerPosition = yPlayerPosition +1;
 		xNewPlayerPosition = xPlayerPosition;
+	
 	}
 }
 
@@ -118,6 +114,15 @@ void Player::CheckMove(char userInput)
 void Player::AskUserInput()
 {
 	std::cin >> UserInputs;
+	if(UserInputs == 'w'|| UserInputs == 'a'|| UserInputs == 's'|| UserInputs == 'd')
+	{
+		return;
+	}
+	else
+	{
+		std::cout << "Wrong Entry\n";
+		AskUserInput();
+	}
 }
 
 int Player::GetPlayerXposition()
