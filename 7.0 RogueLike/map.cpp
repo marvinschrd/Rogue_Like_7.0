@@ -39,8 +39,23 @@ Map::Map(int playerPositionX, int playerPositionY)
 	}
 	map[playerPositionX][playerPositionY] = ressource.player;
 	map[16][12] = Potion::potion;
+	map[1][38] = Potion::potion;
+	map[4][68] = Potion::potion;
+	map[18][61] = Potion::potion;
+	
 	map[8][14] = Trap::trap;
+	map[10][53] = Trap::trap;
+	map[5][50] = Trap::trap;
+	
 	map[12][15] = ressource.ennemy;
+	map[8][47] = ressource.ennemy;
+	map[8][47] = ressource.ennemy;
+	map[10][46] = ressource.ennemy;
+	map[9][49] = ressource.ennemy;
+	map[9][56] = ressource.ennemy;
+	map[6][57] = ressource.ennemy;
+	map[6][52] = ressource.ennemy;
+	
 	map[6][46]= ressource.walls;
 	map[6][47] = ressource.walls;
 	map[7][51] = ressource.winningObject;
@@ -68,6 +83,7 @@ Map::Map(int playerPositionX, int playerPositionY)
 		map[16][i + 34] = ressource.walls;
 		map[16][i + 39] = ressource.walls;
 		map[16][i + 44] = ressource.walls;
+		
 	}
 	for (unsigned int i = 0; i < 3; i++)
 	{
@@ -91,6 +107,12 @@ Map::Map(int playerPositionX, int playerPositionY)
 		map[8][i + 49] = ressource.walls;
 		map[8][i + 52] = ressource.walls;
 		map[i + 6][55] = ressource.walls;
+	}
+	for(int i = 0; i<=10;i++)
+	{
+		map[i + 7][25] = ressource.walls;
+		map[i + 7][26] = ressource.walls;
+		map[4][i + 7] = ressource.walls;
 	}
 }
 

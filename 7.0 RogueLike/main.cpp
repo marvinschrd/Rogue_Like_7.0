@@ -47,8 +47,8 @@ int main() {
 		
 		system("cls");
 		map.Print();
-		map.GiveKey(potion.potionsLeft, Ressource::mystery,map.keyXPosition, map.keyYPosition);
 		map.ShowMenu(player.health_);
+		map.GiveKey(potion.potionsLeft, Ressource::mystery,map.keyXPosition, map.keyYPosition);
 		player.AskUserInput();
 		player.CheckMove(player.UserInputs);
 		map.MoveSecurity(player.xNewPlayerPosition, player.yNewPlayerPosition);
