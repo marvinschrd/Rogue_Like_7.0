@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 #include "player.h"
 #include "ennemy.h"
 #include "map.h"
@@ -28,38 +28,44 @@ int main() {
 
 	
 	
-	Player player = Player(100, '@');
-	Ennemy ennemy = Ennemy(100, '&');
-	Potion potion = Potion(20, '$');
-	Trap trap = Trap(30, '*');
+	Player player = Player();
+	Ennemy ennemy = Ennemy();
+	Potion potion = Potion();
+	Trap trap = Trap();
 	Map map = Map(player.xPlayerPosition, player.yPlayerPosition);
-	srand(time(NULL));
 	
-	//map.Add(Ressource::player, player.xPlayerPosition, player.yPlayerPosition);
+
 	bool isRunning = true;
 	while (isRunning == true)
 	{
+		
 		map.isObstacle = false;
 		map.isEnnemy = false;
 		map.isPotion = false;
 		map.isTrap = false;
-		potion.potionTaken = true;
+		map.isMistery = false;
 		
 		system("cls");
-		map.CheckWinOrDeath(player.health_, isRunning);
 		map.Print();
+		map.GiveKey(potion.potionsLeft, Ressource::mystery,map.keyXPosition, map.keyYPosition);
 		map.ShowMenu(player.health_);
 		player.AskUserInput();
 		player.CheckMove(player.UserInputs);
 		map.MoveSecurity(player.xNewPlayerPosition, player.yNewPlayerPosition);
 		map.UpdateMap(player.GetPlayerXposition(), player.GetPlayerYposition());
-		player.MovePosition(player.xNewPlayerPosition, player.yNewPlayerPosition, map.isObstacle, map.isEnnemy, map.isPotion, map.isTrap, potion.potionVie, ennemy.attack_, trap.attackTrap, player.UserChoice);
+		player.MovePosition(player.xNewPlayerPosition, player.yNewPlayerPosition, map.isObstacle, map.isEnnemy, map.isPotion, map.isTrap,map.isMistery,map.isWinningObject,potion.potionVie, ennemy.attack_, trap.attackTrap, player.UserChoice, potion.potionsLeft);
 		map.Add(Ressource::player, player.xPlayerPosition, player.yPlayerPosition);
+		map.CheckWinOrDeath(player.health_, isRunning, map.isWinningObject);
 		
-
 	}
-	
-
+	system("cls");
+	std::cout << " #####################################################################\n";
+	std::cout << " |                                                                   |\n";
+	std::cout << " |                                                                   |\n";
+	std::cout << " |                       End of the game                             |\n";
+	std::cout << " |                                                                   |\n";
+	std::cout << " |                                                                   |\n";
+	std::cout << " #####################################################################\n";
 	system("pause");
 	return EXIT_SUCCESS;
 }

@@ -1,7 +1,8 @@
 #include "ennemy.h"
 
-Ennemy::Ennemy(const int attack, char sprite) 
-{}
+Ennemy::Ennemy()
+{
+}
 
 //void Ennemy::Attack(Player& Player) const
 //{

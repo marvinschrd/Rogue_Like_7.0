@@ -2,12 +2,11 @@
 class Potion
 {
 public:
-	Potion(const int health, char sprite);
+	Potion();
 	~Potion() {};
 	static const char potion = '¢';
 	int potionVie = 20;
-	bool potionTaken;
-
+	int potionsLeft = 0;
 private:
 
 

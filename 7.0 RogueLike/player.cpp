@@ -1,8 +1,6 @@
 #include "player.h"
-#include "map.h"
-#include "GlobalRessources.h"
 #include <iostream>
-#include "trap.h"
+
 
 
 void Player::TakeDamage(const int attack)
@@ -10,7 +8,7 @@ void Player::TakeDamage(const int attack)
 	health_ -= attack;
 }
 
-void Player::PickUpObject(char userChoice ,int potionHealth)
+void Player::PickUpObject(char userChoice ,int potionHealth, int& potionsLeft)
 {
 	std::cout << "Do you want to eat the magical healing apple ? If you don't, it will be wasted .  Type Y or N\n";
 	std::cin >> userChoice;
@@ -19,6 +17,7 @@ void Player::PickUpObject(char userChoice ,int potionHealth)
 	{
 	case('y'):
 	{
+		potionsLeft++;
 		takeHealth(potionHealth);
 		std::cout << "\nThe apple power gave you 20 health point\n\n";
 		system("pause");
@@ -36,7 +35,7 @@ void Player::PickUpObject(char userChoice ,int potionHealth)
 	}
 }
 
-void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool isObstacle, bool isEnnemy, bool isPotion, bool isTrap, int potionHealth, int ennemyAttack, int trapDamage, char userChoice)
+void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool isObstacle, bool isEnnemy, bool isPotion, bool isTrap,bool isMistery, bool isWinningObject, int potionHealth, int ennemyAttack, int trapDamage, char userChoice, int& potionsLeft)
 {
 	if(isObstacle== true)
 	{
@@ -49,15 +48,16 @@ void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool i
 		xPlayerPosition = newplayerPositionX;
 		yPlayerPosition = newplayerPositionY;
 		TakeDamage(ennemyAttack);
-		std::cout << "\nThe enemy got you, he hit you with his full strength, you die..\n\n";
+		std::cout << "\nThe fake apple exploded when you touched it, you died..\n\n";
 		system("pause");
 		return;
 	}
 	if(isPotion == true)
 	{
-		PickUpObject(userChoice, potionHealth);
+		PickUpObject(userChoice, potionHealth, potionsLeft);
 		xPlayerPosition = newplayerPositionX;
 		yPlayerPosition = newplayerPositionY;
+		
 		return;
 	}
 	if(isTrap == true)
@@ -68,6 +68,19 @@ void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool i
 		std::cout << "\nYou fell into a trap, hurting yourself and loosing 30 health points\n\n";
 		system("pause");
 		return;
+	}
+	if(isMistery == true)
+	{
+		xPlayerPosition = newplayerPositionX;
+		yPlayerPosition = newplayerPositionY;
+		
+	}
+	if(isWinningObject == true)
+	{
+		xPlayerPosition = newplayerPositionX;
+		yPlayerPosition = newplayerPositionY;
+		std::cout << "Congratulation you found the magic staff, you teleport out of the dungeon\n";
+		system("pause");
 	}
 	else
 	{
@@ -101,14 +114,6 @@ void Player::CheckMove(char userInput)
 	}
 }
 
-//void Player::CheckObject()
-//{
-//	/*if(map.map[ressource.xNewPlayerPosition][ressource.yNewPlayerPosition] == ressources.walls || map.map[ressource.xNewPlayerPosition][ressource.yNewPlayerPosition] == ressources.rocks)
-//	{
-//		map.isObstacle = true;
-//	}*/
-//	
-//}
 
 void Player::AskUserInput()
 {
@@ -132,7 +137,7 @@ void Player::takeHealth(int potionHealth)
 	
 }
 
-Player::Player(const int health, char sprite)
+Player::Player()
 {
 }
 

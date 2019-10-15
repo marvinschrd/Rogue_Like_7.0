@@ -3,10 +3,10 @@ class Trap
 {
 public:
 	
-	Trap(int attack, char sprite);
+	Trap();
 	~Trap() {};
 
-	static const char trap = 'X';
+	static const char trap = char(0);
 	const int attackTrap = 30;
 	
 
