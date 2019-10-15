@@ -65,7 +65,7 @@ void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool i
 		xPlayerPosition = newplayerPositionX;
 		yPlayerPosition = newplayerPositionY;
 		TakeDamage(trapDamage);
-		std::cout << "\nYou fell into a trap, hurting yourself and loosing 30 health points\n\n";
+		std::cout << "\nYou fell into a trap, hurting yourself and loosing 40 health points\n\n";
 		system("pause");
 		return;
 	}
