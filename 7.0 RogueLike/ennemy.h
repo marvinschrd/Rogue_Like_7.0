@@ -9,7 +9,5 @@ public:
 	int attack_ = 200;
 private:
 	
-	char sprite_;
-	
 };
 

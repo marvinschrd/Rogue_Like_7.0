@@ -157,6 +157,17 @@ void Map::ShowMenu(int playerHealth)
 	
 }
 
+void Map::ShowEnding()
+{
+	std::cout << " #####################################################################\n";
+	std::cout << " |                                                                   |\n";
+	std::cout << " |                                                                   |\n";
+	std::cout << " |                       End of the game                             |\n";
+	std::cout << " |                                                                   |\n";
+	std::cout << " |                                                                   |\n";
+	std::cout << " #####################################################################\n";
+}
+
 void Map::MoveSecurity(int playerNewPositionx, int playerNewPositionY)
 {
 	if(map[playerNewPositionx][playerNewPositionY]==ressource.walls || map[playerNewPositionx][playerNewPositionY] == ressource.rocks)

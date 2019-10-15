@@ -25,7 +25,6 @@ public:
 	int yNewPlayerPosition;
 	int health_ = 100;
 private:
-	char sprite_;
 	
 };
 

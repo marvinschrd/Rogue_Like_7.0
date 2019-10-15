@@ -53,19 +53,17 @@ int main() {
 		player.CheckMove(player.UserInputs);
 		map.MoveSecurity(player.xNewPlayerPosition, player.yNewPlayerPosition);
 		map.UpdateMap(player.GetPlayerXposition(), player.GetPlayerYposition());
-		player.MovePosition(player.xNewPlayerPosition, player.yNewPlayerPosition, map.isObstacle, map.isEnnemy, map.isPotion, map.isTrap,map.isMistery,map.isWinningObject,potion.potionVie, ennemy.attack_, trap.attackTrap, player.UserChoice, potion.potionsLeft);
+		
+		player.MovePosition(player.xNewPlayerPosition, player.yNewPlayerPosition, map.isObstacle, map.isEnnemy,
+			map.isPotion, map.isTrap,map.isMistery,map.isWinningObject,potion.potionVie, 
+			ennemy.attack_, trap.attackTrap, player.UserChoice, potion.potionsLeft);
+		
 		map.Add(Ressource::player, player.xPlayerPosition, player.yPlayerPosition);
 		map.CheckWinOrDeath(player.health_, isRunning, map.isWinningObject);
 		
 	}
 	system("cls");
-	std::cout << " #####################################################################\n";
-	std::cout << " |                                                                   |\n";
-	std::cout << " |                                                                   |\n";
-	std::cout << " |                       End of the game                             |\n";
-	std::cout << " |                                                                   |\n";
-	std::cout << " |                                                                   |\n";
-	std::cout << " #####################################################################\n";
+	map.ShowEnding();
 	system("pause");
 	return EXIT_SUCCESS;
 }
