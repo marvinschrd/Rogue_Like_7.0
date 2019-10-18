@@ -5,6 +5,8 @@
 #include "potion.h"
 #include "trap.h"
 #include <time.h>
+#include <fstream>
+#include <string>
 
 Ressource ressource;
 HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -119,19 +121,49 @@ Map::Map(int playerPositionX, int playerPositionY)
 void Map::Print()
 {
 	system("Color 0C");
+	
+		for (int i = 0; i < map.size(); i++)
+		{
+			for (int j = 0; j < map[i].size(); j++)
+			{
+
+				std::cout << map[i][j];
+			}
+			std::cout << "\n";
+		}
+	
+}
+
+void Map::loadLevel2()
+{
+
+	std::ifstream inFile;
+	inFile >> std::noskipws;
+
+	char line;
+	inFile.open("Niveau2.txt");
+	map = std::vector<std::vector<char> >(18, std::vector<char>(56));
+
 	for (int i = 0; i < map.size(); i++)
 	{
 		for (int j = 0; j < map[i].size(); j++)
 		{
+			while (inFile >> line) {
 
-			std::cout << map[i][j];
+				map[i][j] = line;
+				break;
+			}
+
 		}
-		std::cout << "\n";
 
 	}
-}
 
 
+	inFile.close();
+
+
+
+};
 
 void Map::Add(char objectImage, int objectPositionX, int objectPositionY)
 {
@@ -204,6 +236,7 @@ void Map::MoveSecurity(int playerNewPositionx, int playerNewPositionY)
 	if (map[playerNewPositionx][playerNewPositionY] == ressource.winningObject)
 	{
 		isWinningObject = true;
+		loadLevel2();
 	}
 }
 
@@ -214,21 +247,24 @@ void Map::CheckWinOrDeath(int playerHealth, bool& isRunning, bool isWinningObjec
 	{
 		isRunning = false;
 	}
-	if(isWinningObject == true)
+	/*if(isWinningObject == true)
 	{
 		isRunning = false;
+	}*/
+}
+
+void Map::GiveKey(int potionTaken, char keyImage, int keyXPosition, int keyYPosition, bool level2)
+{
+	int numberNeeded = 3;
+	if(potionTaken == numberNeeded && level2 == false)
+	{
+			Add(keyImage, keyXPosition, keyYPosition);
 	}
 }
 
-void Map::GiveKey(int potionTaken, char keyImage, int keyXPosition, int keyYPosition)
-{
-	int numberNeeded = 3;
-	if(potionTaken == numberNeeded)
-	{
-		Add(keyImage, keyXPosition, keyYPosition);
-		std::cout << " A button appeared on the floor\n";
-	}
-}
+
+
+
 
 
 

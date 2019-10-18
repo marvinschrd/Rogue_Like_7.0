@@ -30,7 +30,7 @@ void Player::PickUpObject(char userChoice ,int potionHealth, int& potionsLeft)
 	}
 }
 
-void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool isObstacle, bool isEnnemy, bool isPotion, bool isTrap,bool isMistery, bool isWinningObject, int potionHealth, int ennemyAttack, int trapDamage, char userChoice, int& potionsLeft)
+void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool isObstacle, bool isEnnemy, bool isPotion, bool isTrap,bool isMistery, bool isWinningObject,bool& level2, int potionHealth, int ennemyAttack, int trapDamage, char userChoice, int& potionsLeft)
 {
 	if(isObstacle== true)
 	{
@@ -68,13 +68,17 @@ void Player::MovePosition(int newplayerPositionX, int newplayerPositionY, bool i
 	{
 		xPlayerPosition = newplayerPositionX;
 		yPlayerPosition = newplayerPositionY;
-		
+		std::cout << "A button appeared on the floor\n";
 	}
 	if(isWinningObject == true)
 	{
-		xPlayerPosition = newplayerPositionX;
-		yPlayerPosition = newplayerPositionY;
+		xPlayerPosition = 2;
+		yPlayerPosition = 7;
 		std::cout << "Congratulation you found the magic staff, you teleport out of the dungeon\n";
+		level2 = true;
+
+		
+		
 		system("pause");
 	}
 	else
